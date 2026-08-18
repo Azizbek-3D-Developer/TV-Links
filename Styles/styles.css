@@ -362,3 +362,265 @@ body {
 #stream_btn:active {
     transform: scale(0.98);
 }
+
+
+
+/* ================================= */
+/*         MOVIE SHARING              */
+/* ================================= */
+
+.movie-sharing {
+    position: absolute;
+
+    bottom: 8vh;
+
+    width: min(80vw, 1100px);
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+
+/* ================================= */
+/*         UPLOAD SECTION             */
+/* ================================= */
+
+.upload-section,
+.current-section {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    width: 100%;
+}
+
+
+/* ================================= */
+/*          MOVIE INPUT               */
+/* ================================= */
+
+#movie_input {
+    flex: 1;
+
+    height: clamp(50px, 6vh, 75px);
+
+    padding: 0 20px;
+
+    background-color: #181818;
+
+    color: #e6e6e6;
+
+    border: 1px solid #303030;
+    border-radius: 10px;
+
+    outline: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(18px, 1.5vw, 28px);
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Placeholder */
+
+#movie_input::placeholder {
+    color: #555;
+}
+
+
+/* Input focus */
+
+#movie_input:focus {
+    background-color: #202020;
+
+    border-color: #555;
+
+    box-shadow:
+        0 0 0 2px #111,
+        0 0 0 3px #444;
+}
+
+
+/* ================================= */
+/*          UPLOAD BUTTON             */
+/* ================================= */
+
+#upload_btn {
+    height: clamp(50px, 6vh, 75px);
+
+    padding: 0 clamp(25px, 2.5vw, 45px);
+
+    background-color: #242424;
+
+    color: #dcdcdc;
+
+    border: 1px solid #3a3a3a;
+    border-radius: 10px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(18px, 1.5vw, 28px);
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#upload_btn:hover {
+    background-color: #303030;
+
+    border-color: #555;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+#upload_btn:focus {
+    outline: none;
+
+    background-color: #303030;
+
+    border-color: #777;
+
+    box-shadow:
+        0 0 0 2px #111,
+        0 0 0 4px #555;
+
+    transform: scale(1.05);
+}
+
+
+#upload_btn:active {
+    transform: scale(0.98);
+}
+
+
+/* ================================= */
+/*         CURRENT MOVIE              */
+/* ================================= */
+
+#current_movie {
+    flex: 1;
+
+    min-width: 0;
+
+    height: clamp(50px, 6vh, 75px);
+
+    display: flex;
+    align-items: center;
+
+    margin: 0;
+
+    padding: 0 20px;
+
+    background-color: #121212;
+
+    color: #888;
+
+    border: 1px solid #252525;
+    border-radius: 10px;
+
+    font-size: clamp(16px, 1.3vw, 24px);
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* ================================= */
+/*            OPEN BUTTON             */
+/* ================================= */
+
+#open_btn {
+    height: clamp(50px, 6vh, 75px);
+
+    padding: 0 clamp(30px, 3vw, 50px);
+
+    background-color: #202020;
+
+    color: #e6e6e6;
+
+    border: 1px solid #3a3a3a;
+    border-radius: 10px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(18px, 1.5vw, 28px);
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#open_btn:hover {
+    background-color: #303030;
+
+    border-color: #555;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+#open_btn:focus {
+    outline: none;
+
+    background-color: #303030;
+
+    border-color: #777;
+
+    box-shadow:
+        0 0 0 2px #111,
+        0 0 0 4px #555;
+
+    transform: scale(1.05);
+}
+
+
+#open_btn:active {
+    transform: scale(0.98);
+}
+
+
+/* ================================= */
+/*        DISABLED OPEN BUTTON        */
+/* ================================= */
+
+#open_btn:disabled {
+    color: #444;
+
+    background-color: #161616;
+
+    border-color: #222;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
