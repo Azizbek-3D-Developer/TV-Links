@@ -34,18 +34,30 @@ const openButton =
 
 async function getMovieLink() {
 
-    const response = await fetch(
-        CONNECTION_URL
-    );
+    const response =
+        await fetch(CONNECTION_URL);
+
 
     if (!response.ok) {
+
         throw new Error(
+            `HTTP ${response.status}`
+        );
+    }
+
+
+    const data =
+        await response.json();
+
+
+    if (!data.success) {
+
+        throw new Error(
+            data.error ||
             "Failed to get movie link"
         );
     }
 
-    const data =
-        await response.json();
 
     return data.url;
 }
@@ -108,6 +120,10 @@ uploadButton.addEventListener(
             movieInput.value.trim();
 
 
+        // -------------------------------
+        // Check input
+        // -------------------------------
+
         if (!url) {
 
             alert(
@@ -118,37 +134,20 @@ uploadButton.addEventListener(
         }
 
 
+        // -------------------------------
+        // Create URL
+        // -------------------------------
+
+        const requestUrl =
+            CONNECTION_URL +
+            "?action=write&url=" +
+            encodeURIComponent(url);
+
+
         try {
 
-            /*
-             * IMPORTANT:
-             *
-             * We intentionally use text/plain
-             * instead of application/json.
-             *
-             * This avoids the browser making
-             * a CORS preflight request.
-             */
-
             const response =
-                await fetch(
-                    CONNECTION_URL,
-                    {
-                        method: "POST",
-
-                        redirect: "follow",
-
-                        headers: {
-                            "Content-Type":
-                                "text/plain;charset=utf-8"
-                        },
-
-                        body:
-                            new URLSearchParams({
-                                url: url
-                            }).toString()
-                    }
-                );
+                await fetch(requestUrl);
 
 
             if (!response.ok) {
@@ -178,18 +177,24 @@ uploadButton.addEventListener(
             }
 
 
+            // -------------------------------
             // Update displayed link
+            // -------------------------------
 
             currentMovie.textContent =
                 data.url;
 
 
+            // -------------------------------
             // Clear input
+            // -------------------------------
 
             movieInput.value = "";
 
 
+            // -------------------------------
             // Enable Open button
+            // -------------------------------
 
             openButton.disabled =
                 false;
@@ -238,6 +243,8 @@ openButton.addEventListener(
             }
 
 
+            // Open movie in new tab
+
             window.open(
                 url,
                 "_blank"
@@ -255,7 +262,7 @@ openButton.addEventListener(
 
 
 // ==========================================
-// LOAD LINK WHEN PAGE OPENS
+// LOAD MOVIE WHEN PAGE OPENS
 // ==========================================
 
 updateMovieLink();

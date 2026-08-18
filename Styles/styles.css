@@ -176,6 +176,7 @@ body {
 
 .streamer {
     position: absolute;
+    margin-top: 20px;
 
     bottom: 8vh;
 
