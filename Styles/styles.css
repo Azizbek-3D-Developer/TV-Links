@@ -370,7 +370,8 @@ body {
 /* ================================= */
 
 .movie-sharing {
-    position: absolute;
+    /*position: absolute;*/
+    margin-top: 20px;
 
     bottom: 8vh;
 
