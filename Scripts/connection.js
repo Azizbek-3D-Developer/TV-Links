@@ -30,18 +30,23 @@ const openButton =
 
 
 // ==========================================
-// GET MOVIE LINK FROM GOOGLE SHEET
+// GET MOVIE LINK
 // ==========================================
 
 async function getMovieLink() {
 
-    const response = await fetch(CONNECTION_URL);
+    const response = await fetch(
+        CONNECTION_URL
+    );
 
     if (!response.ok) {
-        throw new Error("Failed to get movie link");
+        throw new Error(
+            "Failed to get movie link"
+        );
     }
 
-    const data = await response.json();
+    const data =
+        await response.json();
 
     return data.url;
 }
@@ -55,33 +60,39 @@ async function updateMovieLink() {
 
     try {
 
-        const url = await getMovieLink();
+        const url =
+            await getMovieLink();
+
 
         if (url) {
 
-            currentMovie.textContent = url;
+            currentMovie.textContent =
+                url;
 
-            openButton.disabled = false;
+            openButton.disabled =
+                false;
 
         } else {
 
             currentMovie.textContent =
                 "No movie link";
 
-            openButton.disabled = true;
+            openButton.disabled =
+                true;
         }
 
     } catch (error) {
 
         console.error(
-            "Error loading movie:",
+            "GET ERROR:",
             error
         );
 
         currentMovie.textContent =
             "Failed to load movie link";
 
-        openButton.disabled = true;
+        openButton.disabled =
+            true;
     }
 }
 
@@ -98,14 +109,27 @@ uploadButton.addEventListener(
             movieInput.value.trim();
 
 
-        // Nothing entered
-
         if (!url) {
+
+            alert(
+                "Please enter a movie link"
+            );
+
             return;
         }
 
 
         try {
+
+            /*
+             * IMPORTANT:
+             *
+             * We intentionally use text/plain
+             * instead of application/json.
+             *
+             * This avoids the browser making
+             * a CORS preflight request.
+             */
 
             const response =
                 await fetch(
@@ -113,15 +137,17 @@ uploadButton.addEventListener(
                     {
                         method: "POST",
 
+                        redirect: "follow",
+
                         headers: {
                             "Content-Type":
-                                "application/x-www-form-urlencoded"
+                                "text/plain;charset=utf-8"
                         },
 
                         body:
                             new URLSearchParams({
                                 url: url
-                            })
+                            }).toString()
                     }
                 );
 
@@ -129,7 +155,7 @@ uploadButton.addEventListener(
             if (!response.ok) {
 
                 throw new Error(
-                    "Failed to upload movie link"
+                    `HTTP ${response.status}`
                 );
             }
 
@@ -138,7 +164,22 @@ uploadButton.addEventListener(
                 await response.json();
 
 
-            // Show new URL immediately
+            console.log(
+                "UPLOAD RESPONSE:",
+                data
+            );
+
+
+            if (!data.success) {
+
+                throw new Error(
+                    data.error ||
+                    "Upload failed"
+                );
+            }
+
+
+            // Update displayed link
 
             currentMovie.textContent =
                 data.url;
@@ -151,18 +192,19 @@ uploadButton.addEventListener(
 
             // Enable Open button
 
-            openButton.disabled = false;
+            openButton.disabled =
+                false;
 
 
             console.log(
-                "Movie uploaded:",
+                "Movie successfully uploaded:",
                 data.url
             );
 
         } catch (error) {
 
             console.error(
-                "Error uploading movie:",
+                "UPLOAD ERROR:",
                 error
             );
 
@@ -197,8 +239,6 @@ openButton.addEventListener(
             }
 
 
-            // Open in a new tab/window
-
             window.open(
                 url,
                 "_blank"
@@ -207,7 +247,7 @@ openButton.addEventListener(
         } catch (error) {
 
             console.error(
-                "Error opening movie:",
+                "OPEN ERROR:",
                 error
             );
         }
@@ -216,7 +256,7 @@ openButton.addEventListener(
 
 
 // ==========================================
-// LOAD MOVIE WHEN PAGE OPENS
+// LOAD LINK WHEN PAGE OPENS
 // ==========================================
 
 updateMovieLink();
