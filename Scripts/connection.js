@@ -1,4 +1,3 @@
-
 const CONNECTION_URL = "https://script.google.com/macros/s/AKfycbxOd6fohRJtyyxsVGusQsPT2Vrg0YO7PAsnrqQtUoFQ4h-tT6L67xdKs7B_4Uk4gisU/exec"
 async function getMovieLink() {
 
@@ -27,6 +26,12 @@ const currentMovie =
 const openButton =
     document.getElementById("open_btn");
 
+const hiddenMovieUrl =
+    document.getElementById("hidden_movie_url");
+
+const uploadForm =
+    document.getElementById("upload_form");
+
 
 // ==========================================
 // GET MOVIE LINK
@@ -48,15 +53,6 @@ async function getMovieLink() {
 
     const data =
         await response.json();
-
-
-    if (!data.success) {
-
-        throw new Error(
-            data.error ||
-            "Failed to get movie link"
-        );
-    }
 
 
     return data.url;
@@ -114,15 +110,11 @@ async function updateMovieLink() {
 
 uploadButton.addEventListener(
     "click",
-    async () => {
+    () => {
 
         const url =
             movieInput.value.trim();
 
-
-        // -------------------------------
-        // Check input
-        // -------------------------------
 
         if (!url) {
 
@@ -134,87 +126,35 @@ uploadButton.addEventListener(
         }
 
 
-        // -------------------------------
-        // Create URL
-        // -------------------------------
+        // Put URL into hidden input
 
-        const requestUrl =
-            CONNECTION_URL +
-            "?action=write&url=" +
-            encodeURIComponent(url);
+        hiddenMovieUrl.value =
+            url;
 
 
-        try {
+        // Submit normal HTML form
 
-            const response =
-                await fetch(requestUrl);
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    `HTTP ${response.status}`
-                );
-            }
+        uploadForm.submit();
 
 
-            const data =
-                await response.json();
+        // Update UI immediately
+
+        currentMovie.textContent =
+            url;
+
+        openButton.disabled =
+            false;
 
 
-            console.log(
-                "UPLOAD RESPONSE:",
-                data
-            );
+        // Clear input
+
+        movieInput.value = "";
 
 
-            if (!data.success) {
-
-                throw new Error(
-                    data.error ||
-                    "Upload failed"
-                );
-            }
-
-
-            // -------------------------------
-            // Update displayed link
-            // -------------------------------
-
-            currentMovie.textContent =
-                data.url;
-
-
-            // -------------------------------
-            // Clear input
-            // -------------------------------
-
-            movieInput.value = "";
-
-
-            // -------------------------------
-            // Enable Open button
-            // -------------------------------
-
-            openButton.disabled =
-                false;
-
-
-            console.log(
-                "Movie successfully uploaded:",
-                data.url
-            );
-
-        } catch (error) {
-
-            console.error(
-                "UPLOAD ERROR:",
-                error
-            );
-
-            currentMovie.textContent =
-                "Failed to upload movie link";
-        }
+        console.log(
+            "Movie link sent:",
+            url
+        );
     }
 );
 
@@ -243,8 +183,6 @@ openButton.addEventListener(
             }
 
 
-            // Open movie in new tab
-
             window.open(
                 url,
                 "_blank"
@@ -262,7 +200,7 @@ openButton.addEventListener(
 
 
 // ==========================================
-// LOAD MOVIE WHEN PAGE OPENS
+// INITIAL LOAD
 // ==========================================
 
 updateMovieLink();

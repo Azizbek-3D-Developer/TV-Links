@@ -85,6 +85,31 @@
 
     </div>
 
+    <iframe
+        name="upload_frame"
+        id="upload_frame"
+        style="display: none;"
+    ></iframe>
+
+    <form
+        id="upload_form"
+        action="YOUR_APPS_SCRIPT_URL"
+        method="GET"
+        target="upload_frame"
+    >
+        <input
+            type="hidden"
+            name="action"
+            value="write"
+        >
+
+        <input
+            type="hidden"
+            name="url"
+            id="hidden_movie_url"
+        >
+    </form>
+
     </div>
     <script src="./Scripts/script.js"></script>
     <script src="./Scripts/connection.js"></script>
