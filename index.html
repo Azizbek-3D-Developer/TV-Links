@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="stylesheet" href="./Styles/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="buttons-wrapper">
+            <div class="buttons" id="buttons">
+
+            </div>
+        </div>
+        <div class="streamer">
+
+        <div class="streamer-title">
+            Connect to device
+        </div>
+
+        <div class="streamer-controls">
+
+            <span class="ip-prefix">
+                192.168.0.
+            </span>
+
+            <input
+                type="number"
+                id="ip_input"
+                min="1"
+                max="254"
+                placeholder="123"
+                class="input_btns"
+            >
+
+            <input
+                type="number"
+                id="port_input"
+                min="1000"
+                max="65000"
+                placeholder="1010"
+                class="input_btns"
+            >
+
+            <button id="stream_btn">
+                Connect
+            </button>
+
+        </div>
+
+    </div>
+
+    </div>
+    <script src="./Scripts/script.js"></script>
+</body>
+</html>

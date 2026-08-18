@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: #0b0b0b;
+    color: #e8e8e8;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons-wrapper {
+    width: 90%;
+
+    overflow: hidden;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 2vw;
+
+    width: max-content;
+
+    /*
+     * Move the buttons from left to right
+     */
+    animation: moveRight 20s linear infinite;
+}
+
+
+/* ============================= */
+/*          BUTTON               */
+/* ============================= */
+
+.site-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: clamp(180px, 15vw, 300px);
+    height: clamp(80px, 10vh, 140px);
+
+    flex-shrink: 0;
+
+    background-color: #202020;
+    color: #e6e6e6;
+
+    border: 1px solid #303030;
+    border-radius: 10%;
+
+    text-decoration: none;
+
+    font-size: clamp(20px, 2vw, 36px);
+    font-weight: 500;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* ============================= */
+/*           HOVER               */
+/* ============================= */
+
+.site-button:hover {
+    background-color: #292929;
+    border-color: #444;
+}
+
+
+/* ============================= */
+/*           FOCUS               */
+/* ============================= */
+
+.site-button:focus {
+    outline: none;
+
+    background-color: #292929;
+    border-color: #666;
+
+    transform: scale(1.05);
+}
+
+
+/* ============================= */
+/*         ANIMATION             */
+/* ============================= */
+
+@keyframes moveRight {
+
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+
+}
+
+
+/* ============================= */
+/*          STREAMER             */
+/* ============================= */
+
+.streamer {
+    position: absolute;
+
+    bottom: 8vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+/* ============================= */
+/*           TITLE               */
+/* ============================= */
+
+.streamer-title {
+    color: #777;
+
+    font-size: clamp(16px, 1.3vw, 24px);
+    font-weight: 400;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+/* ============================= */
+/*          CONTROLS             */
+/* ============================= */
+
+.streamer-controls {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* ============================= */
+/*         IP PREFIX             */
+/* ============================= */
+
+.ip-prefix {
+    color: #888;
+
+    font-size: clamp(20px, 1.8vw, 32px);
+    font-weight: 400;
+
+    user-select: none;
+}
+
+
+/* ============================= */
+/*           INPUT               */
+/* ============================= */
+
+.input_btns {
+    width: clamp(80px, 8vw, 150px);
+    height: clamp(50px, 6vh, 75px);
+
+    padding: 0 15px;
+
+    background-color: #181818;
+
+    color: #eeeeee;
+
+    border: 1px solid #333;
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: clamp(20px, 1.8vw, 32px);
+
+    text-align: center;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Remove number input arrows */
+
+#ip_input::-webkit-inner-spin-button,
+#ip_input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Input focus */
+
+#ip_input:focus {
+    background-color: #202020;
+
+    border-color: #555;
+
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+
+#port_input:focus {
+    background-color: #202020;
+
+    border-color: #555;
+
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+
+/* Placeholder */
+
+#ip_input::placeholder {
+    color: #555;
+}
+
+#port_input::placeholder {
+    color: #555;
+}
+
+/* ============================= */
+/*        CONNECT BUTTON         */
+/* ============================= */
+
+#stream_btn {
+    height: clamp(50px, 6vh, 75px);
+
+    padding: 0 clamp(25px, 2.5vw, 45px);
+
+    background-color: #242424;
+
+    color: #dcdcdc;
+
+    border: 1px solid #3a3a3a;
+    border-radius: 10px;
+
+    font-size: clamp(18px, 1.5vw, 28px);
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Hover */
+
+#stream_btn:hover {
+    background-color: #303030;
+
+    border-color: #555;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Focus - important for TV remote */
+
+#stream_btn:focus {
+    outline: none;
+
+    background-color: #303030;
+
+    border-color: #777;
+
+    box-shadow:
+        0 0 0 2px #111,
+        0 0 0 4px #555;
+
+    transform: scale(1.05);
+}
+
+
+/* Press */
+
+#stream_btn:active {
+    transform: scale(0.98);
+}
