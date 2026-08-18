@@ -81,6 +81,53 @@ body {
         transform 0.2s ease;
 }
 
+.site-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 15px;
+
+    width: clamp(180px, 15vw, 300px);
+    height: clamp(80px, 10vh, 140px);
+
+    flex-shrink: 0;
+
+    background-color: #202020;
+    color: #e6e6e6;
+
+    border: 1px solid #303030;
+    border-radius: 10%;
+
+    text-decoration: none;
+
+    font-size: clamp(20px, 2vw, 36px);
+    font-weight: 500;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.site-image {
+    width: clamp(35px, 4vw, 60px);
+    height: clamp(35px, 4vw, 60px);
+
+    object-fit: contain;
+
+    border-radius: 8px;
+
+    flex-shrink: 0;
+}
+
+
+.site-name {
+    white-space: nowrap;
+}
+
+
 
 /* ============================= */
 /*           HOVER               */

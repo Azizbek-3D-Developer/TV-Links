@@ -1,44 +1,73 @@
 const sites = {
-    "https://www.youtube.com": "YouTube",
-    "https://www.netflix.com": "Netflix",
-    "https://vk.com/video": "VK Video",
-    "https://megogo.net": "MEGOGO",
-    "https://www.primevideo.com": "Prime Video",
-    "https://www.disneyplus.com": "Disney+",
-    "https://www.max.com": "Max",
-    "https://www.hulu.com/hub/movies": "Hulu",
-    "https://www.paramountplus.com/movies/": "Paramount+",
-    "https://tv.apple.com": "Apple TV+",
-    "https://tubitv.com/welcome": "Tubi",
-    "https://pluto.tv": "Pluto TV",
-    "https://watch.plex.tv/on-demand": "Plex"
+    "https://megogo.net/ru" : {
+        name: "Megogo",
+        image: "./Images/megogo-favicon.ico"
+    },
+    "https://m.kinogo.online/" : {
+        name: "Kinogo",
+        image: "./Images/kinogo-favicon-48x48.ico"
+    },
+    "https://vkvideo.ru/" : {
+        name: "VK videos",
+        image: "./Images/fav_vk_video_2x.ico"
+    },
+    "https://ok.ru/video/showcase" : {
+        name: "OK ru",
+        image: "./Images/logo_ok_32-r23.png"
+    }
 };
 
 const buttonsContainer = document.getElementById("buttons");
 
-function createButton(link, name) {
+function createButton(link, site) {
+
     const button = document.createElement("a");
 
     button.href = link;
-    button.textContent = name;
-
-    // Open in a new tab/window
     button.target = "_blank";
     button.rel = "noopener noreferrer";
 
     button.classList.add("site-button");
 
+
+    // Create image
+    const image = document.createElement("img");
+
+    image.src = site.image;
+    image.alt = site.name;
+
+    image.classList.add("site-image");
+
+
+    // Create text
+    const text = document.createElement("span");
+
+    text.textContent = site.name;
+
+    text.classList.add("site-name");
+
+
+    // Put image + text inside button
+    button.appendChild(image);
+    button.appendChild(text);
+
     return button;
 }
 
+
 // Create the buttons
-for (const [link, name] of Object.entries(sites)) {
-    buttonsContainer.appendChild(createButton(link, name));
+for (const [link, site] of Object.entries(sites)) {
+    buttonsContainer.appendChild(
+        createButton(link, site)
+    );
 }
 
+
 // Duplicate the buttons for infinite animation
-for (const [link, name] of Object.entries(sites)) {
-    buttonsContainer.appendChild(createButton(link, name));
+for (const [link, site] of Object.entries(sites)) {
+    buttonsContainer.appendChild(
+        createButton(link, site)
+    );
 }
 
 
