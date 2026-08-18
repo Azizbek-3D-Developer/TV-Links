@@ -14,6 +14,14 @@ const sites = {
     "https://ok.ru/video/showcase" : {
         name: "OK ru",
         image: "./Images/logo_ok_32-r23.png"
+    },
+    "https://doramy.club/?utm_source=google.com&utm_medium=organic&utm_campaign=google.com&utm_referrer=google.com": {
+        name: "Doramy.club",
+        image: "./Images/dorama-favicon-120x120.png"
+    },
+    "https://dorama.land/": {
+        name: "Dorama-Land",
+        image: "./Images/apple-touch-icon.png"
     }
 };
 

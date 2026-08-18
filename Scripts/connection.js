@@ -10,6 +10,16 @@ async function getMovieLink() {
     return data.url;
 }
 
+const refreshButton =
+    document.getElementById("refresh_btn");
+
+refreshButton.addEventListener(
+    "click",
+    () => {
+        window.location.reload();
+    }
+);
+
 // ==========================================
 // HTML ELEMENTS
 // ==========================================

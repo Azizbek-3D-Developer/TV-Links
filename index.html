@@ -5,54 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies</title>
     <link rel="stylesheet" href="./Styles/styles.css">
+    <link rel="stylesheet" href="./Styles/tablet.css" media="(min-width: 701px) and (max-width: 1100px)">
+    <link rel="stylesheet" href="./Styles/mobile.css" media="(max-width: 700px)">
 </head>
 <body>
     <div class="container">
-        <div class="buttons-wrapper">
-            <div class="buttons" id="buttons">
+        <!-- ================================= -->
+        <!--           LINK CONVEYOR           -->
+        <!-- ================================= -->
 
+        <div class="buttons-wrapper">
+
+            <div class="buttons" id="buttons">
             </div>
+
         </div>
+
+
+        <!-- ================================= -->
+        <!--             STREAMER               -->
+        <!-- ================================= -->
+
         <div class="streamer">
 
-        <div class="streamer-title">
-            Connect to device
+            <div class="streamer-title">
+                Connect to device
+            </div>
+
+            <div class="streamer-controls">
+
+                <span class="ip-prefix">
+                    192.168.0.
+                </span>
+
+                <input
+                    type="number"
+                    id="ip_input"
+                    min="1"
+                    max="254"
+                    placeholder="123"
+                    class="input_btns"
+                >
+
+                <input
+                    type="number"
+                    id="port_input"
+                    min="1000"
+                    max="65000"
+                    placeholder="1010"
+                    class="input_btns"
+                >
+
+                <button id="stream_btn">
+                    Connect
+                </button>
+
+            </div>
+
         </div>
 
-        <div class="streamer-controls">
+        <!-- ================================= -->
+        <!--          MOVIE SHARING             -->
+        <!-- ================================= -->
 
-            <span class="ip-prefix">
-                192.168.0.
-            </span>
-
-            <input
-                type="number"
-                id="ip_input"
-                min="1"
-                max="254"
-                placeholder="123"
-                class="input_btns"
-            >
-
-            <input
-                type="number"
-                id="port_input"
-                min="1000"
-                max="65000"
-                placeholder="1010"
-                class="input_btns"
-            >
-
-            <button id="stream_btn">
-                Connect
-            </button>
-
-        </div>
-
-        
         <div class="movie-sharing">
 
-            <!-- Upload new link -->
             <div class="upload-section">
 
                 <input
@@ -68,7 +85,6 @@
             </div>
 
 
-            <!-- Current link -->
             <div class="current-section">
 
                 <p id="current_movie">
@@ -79,38 +95,44 @@
                     Open
                 </button>
 
+                <button id="refresh_btn">
+                    ↻
+                </button>
+
             </div>
 
         </div>
 
+
+        <iframe
+            name="upload_frame"
+            id="upload_frame"
+            style="display: none;"
+        ></iframe>
+
+        <form
+            id="upload_form"
+            action="https://script.google.com/macros/s/AKfycbxOd6fohRJtyyxsVGusQsPT2Vrg0YO7PAsnrqQtUoFQ4h-tT6L67xdKs7B_4Uk4gisU/exec"
+            method="GET"
+            target="upload_frame"
+        >
+            <input
+                type="hidden"
+                name="action"
+                value="write"
+            >
+
+            <input
+                type="hidden"
+                name="url"
+                id="hidden_movie_url"
+            >
+        </form>
+        
+
     </div>
 
-    <iframe
-        name="upload_frame"
-        id="upload_frame"
-        style="display: none;"
-    ></iframe>
 
-    <form
-        id="upload_form"
-        action="https://script.google.com/macros/s/AKfycbxOd6fohRJtyyxsVGusQsPT2Vrg0YO7PAsnrqQtUoFQ4h-tT6L67xdKs7B_4Uk4gisU/exec"
-        method="GET"
-        target="upload_frame"
-    >
-        <input
-            type="hidden"
-            name="action"
-            value="write"
-        >
-
-        <input
-            type="hidden"
-            name="url"
-            id="hidden_movie_url"
-        >
-    </form>
-
-    </div>
     <script src="./Scripts/script.js"></script>
     <script src="./Scripts/connection.js"></script>
 </body>

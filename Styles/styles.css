@@ -1,79 +1,158 @@
+/* ========================================= */
+/*                  GLOBAL                   */
+/* ========================================= */
+
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
+
 html,
 body {
+    margin: 0;
+    padding: 0;
+
     width: 100%;
-    height: 100%;
+    min-height: 100%;
+
+    background-color: #0d0d0d;
+
+    color: #e0e0e0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 }
+
+
+/* ========================================= */
+/*                  BODY                     */
+/* ========================================= */
 
 body {
-    background-color: #0b0b0b;
-    color: #e8e8e8;
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    overflow: hidden;
-}
-
-.container {
-    width: 100%;
-    height: 100%;
+    min-height: 100vh;
 
     display: flex;
+
     justify-content: center;
     align-items: center;
+
+    overflow-x: hidden;
 }
 
-.buttons-wrapper {
-    width: 90%;
 
-    overflow: hidden;
-}
+/* ========================================= */
+/*                MAIN CONTAINER             */
+/* ========================================= */
 
-.buttons {
+.container {
+
+    width: min(90vw, 1400px);
+
     display: flex;
-    flex-direction: row;
+
+    flex-direction: column;
+
     align-items: center;
 
-    gap: 2vw;
+    gap: clamp(35px, 5vh, 70px);
+
+    padding:
+        clamp(30px, 5vh, 70px)
+        0;
+}
+
+
+/* ========================================= */
+/*              LINK CONVEYOR                */
+/* ========================================= */
+
+.buttons-wrapper {
+
+    width: 100%;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    background-color: #111111;
+
+    border: 1px solid #242424;
+
+    padding:
+        clamp(12px, 1.5vw, 20px)
+        0;
+}
+
+
+/* The moving row */
+
+.buttons {
+
+    display: flex;
+
+    align-items: center;
 
     width: max-content;
 
-    /*
-     * Move the buttons from left to right
-     */
-    animation: moveRight 20s linear infinite;
+    gap: clamp(15px, 2vw, 30px);
+
+    animation: conveyor 35s linear infinite;
+
+    padding-left: 20px;
 }
 
 
-/* ============================= */
-/*          BUTTON               */
-/* ============================= */
+/*
+    The speed is intentionally slow.
+
+    Increase 35s → slower
+    Decrease 35s → faster
+*/
+
+@keyframes conveyor {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+/* ========================================= */
+/*               SERVICE BUTTONS             */
+/* ========================================= */
 
 .site-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: clamp(180px, 15vw, 300px);
-    height: clamp(80px, 10vh, 140px);
 
     flex-shrink: 0;
 
-    background-color: #202020;
-    color: #e6e6e6;
+    width: clamp(180px, 15vw, 240px);
 
-    border: 1px solid #303030;
-    border-radius: 10%;
+    height: clamp(65px, 8vh, 90px);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    background-color: #202020;
+
+    color: #dddddd;
+
+    border: 1px solid #353535;
+
+    border-radius: 10px;
 
     text-decoration: none;
 
-    font-size: clamp(20px, 2vw, 36px);
-    font-weight: 500;
+    font-size: clamp(18px, 1.4vw, 26px);
 
     transition:
         background-color 0.2s ease,
@@ -81,45 +160,26 @@ body {
         transform 0.2s ease;
 }
 
-.site-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-    gap: 15px;
+.site-button:hover,
+.site-button:focus {
 
-    width: clamp(180px, 15vw, 300px);
-    height: clamp(80px, 10vh, 140px);
+    background-color: #292929;
 
-    flex-shrink: 0;
+    border-color: #555555;
 
-    background-color: #202020;
-    color: #e6e6e6;
+    transform: scale(1.04);
 
-    border: 1px solid #303030;
-    border-radius: 10%;
-
-    text-decoration: none;
-
-    font-size: clamp(20px, 2vw, 36px);
-    font-weight: 500;
-
-    transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
+    outline: none;
 }
 
 
 .site-image {
-    width: clamp(35px, 4vw, 60px);
-    height: clamp(35px, 4vw, 60px);
+
+    width: 32px;
+    height: 32px;
 
     object-fit: contain;
-
-    border-radius: 8px;
-
-    flex-shrink: 0;
 }
 
 
@@ -128,416 +188,318 @@ body {
 }
 
 
-
-/* ============================= */
-/*           HOVER               */
-/* ============================= */
-
-.site-button:hover {
-    background-color: #292929;
-    border-color: #444;
-}
-
-
-/* ============================= */
-/*           FOCUS               */
-/* ============================= */
-
-.site-button:focus {
-    outline: none;
-
-    background-color: #292929;
-    border-color: #666;
-
-    transform: scale(1.05);
-}
-
-
-/* ============================= */
-/*         ANIMATION             */
-/* ============================= */
-
-@keyframes moveRight {
-
-    from {
-        transform: translateX(-50%);
-    }
-
-    to {
-        transform: translateX(0);
-    }
-
-}
-
-
-/* ============================= */
-/*          STREAMER             */
-/* ============================= */
+/* ========================================= */
+/*                 STREAMER                  */
+/* ========================================= */
 
 .streamer {
-    position: absolute;
-    margin-top: 20px;
 
-    bottom: 8vh;
+    width: 100%;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 
     gap: 18px;
+
+    padding:
+        clamp(20px, 2.5vw, 35px);
+
+    background-color: #111111;
+
+    border: 1px solid #242424;
+
+    border-radius: 12px;
 }
 
 
-/* ============================= */
-/*           TITLE               */
-/* ============================= */
+/* ========================================= */
+/*             STREAMER TITLE                */
+/* ========================================= */
 
 .streamer-title {
-    color: #777;
 
-    font-size: clamp(16px, 1.3vw, 24px);
-    font-weight: 400;
+    color: #cfcfcf;
 
-    letter-spacing: 1px;
+    font-size:
+        clamp(20px, 1.6vw, 28px);
 
-    text-transform: uppercase;
+    font-weight: 500;
+
+    text-align: center;
 }
 
 
-/* ============================= */
-/*          CONTROLS             */
-/* ============================= */
+/* ========================================= */
+/*           STREAMER CONTROLS               */
+/* ========================================= */
 
 .streamer-controls {
+
+    width: 100%;
+
     display: flex;
+
     align-items: center;
 
-    gap: 10px;
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
 }
 
 
-/* ============================= */
-/*         IP PREFIX             */
-/* ============================= */
+/* ========================================= */
+/*                 IP PREFIX                 */
+/* ========================================= */
 
 .ip-prefix {
-    color: #888;
 
-    font-size: clamp(20px, 1.8vw, 32px);
-    font-weight: 400;
+    color: #777777;
 
-    user-select: none;
+    font-size:
+        clamp(18px, 1.4vw, 25px);
 }
 
 
-/* ============================= */
-/*           INPUT               */
-/* ============================= */
+/* ========================================= */
+/*              GENERAL INPUTS               */
+/* ========================================= */
 
 .input_btns {
-    width: clamp(80px, 8vw, 150px);
-    height: clamp(50px, 6vh, 75px);
+
+    height: clamp(50px, 6vh, 70px);
 
     padding: 0 15px;
 
-    background-color: #181818;
+    background-color: #1a1a1a;
 
-    color: #eeeeee;
+    color: #dddddd;
 
-    border: 1px solid #333;
+    border: 1px solid #353535;
+
     border-radius: 10px;
 
     outline: none;
 
-    font-size: clamp(20px, 1.8vw, 32px);
+    font-size:
+        clamp(18px, 1.4vw, 25px);
 
     text-align: center;
-
-    transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
 }
 
 
-/* Remove number input arrows */
+.input_btns:focus {
 
-#ip_input::-webkit-inner-spin-button,
-#ip_input::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+    border-color: #666666;
 
-
-/* Input focus */
-
-#ip_input:focus {
     background-color: #202020;
-
-    border-color: #555;
-
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
 }
 
 
-#port_input:focus {
-    background-color: #202020;
-
-    border-color: #555;
-
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
-}
-
-
-/* Placeholder */
-
-#ip_input::placeholder {
-    color: #555;
-}
-
-#port_input::placeholder {
-    color: #555;
-}
-
-/* ============================= */
-/*        CONNECT BUTTON         */
-/* ============================= */
+/* ========================================= */
+/*             STREAM CONNECT BUTTON          */
+/* ========================================= */
 
 #stream_btn {
-    height: clamp(50px, 6vh, 75px);
 
-    padding: 0 clamp(25px, 2.5vw, 45px);
+    height: clamp(50px, 6vh, 70px);
+
+    padding:
+        0 clamp(25px, 2.5vw, 40px);
 
     background-color: #242424;
 
-    color: #dcdcdc;
+    color: #dddddd;
 
     border: 1px solid #3a3a3a;
+
     border-radius: 10px;
 
-    font-size: clamp(18px, 1.5vw, 28px);
-    font-weight: 500;
+    font-size:
+        clamp(18px, 1.4vw, 25px);
 
     cursor: pointer;
 
     transition:
         background-color 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        transform 0.2s ease;
 }
 
-
-/* Hover */
 
 #stream_btn:hover {
-    background-color: #303030;
 
-    border-color: #555;
+    background-color: #303030;
 
     transform: translateY(-2px);
-
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
 }
 
 
-/* Focus - important for TV remote */
-
-#stream_btn:focus {
-    outline: none;
-
-    background-color: #303030;
-
-    border-color: #777;
-
-    box-shadow:
-        0 0 0 2px #111,
-        0 0 0 4px #555;
-
-    transform: scale(1.05);
-}
-
-
-/* Press */
-
-#stream_btn:active {
-    transform: scale(0.98);
-}
-
-
-
-/* ================================= */
-/*         MOVIE SHARING              */
-/* ================================= */
+/* ========================================= */
+/*              MOVIE SHARING                */
+/* ========================================= */
 
 .movie-sharing {
-    /*position: absolute;*/
-    margin-top: 20px;
-
-    bottom: 8vh;
-
-    width: min(80vw, 1100px);
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 20px;
-}
-
-
-/* ================================= */
-/*         UPLOAD SECTION             */
-/* ================================= */
-
-.upload-section,
-.current-section {
-    display: flex;
-    align-items: center;
-
-    gap: 15px;
 
     width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    padding:
+        clamp(20px, 2.5vw, 35px);
+
+    background-color: #111111;
+
+    border: 1px solid #242424;
+
+    border-radius: 12px;
 }
 
 
-/* ================================= */
-/*          MOVIE INPUT               */
-/* ================================= */
+/* ========================================= */
+/*              UPLOAD SECTION               */
+/* ========================================= */
+
+.upload-section {
+
+    display: flex;
+
+    width: 100%;
+
+    gap: 12px;
+}
+
+
+/* ========================================= */
+/*              MOVIE INPUT                  */
+/* ========================================= */
 
 #movie_input {
-    flex: 1;
 
-    height: clamp(50px, 6vh, 75px);
-
-    padding: 0 20px;
-
-    background-color: #181818;
-
-    color: #e6e6e6;
-
-    border: 1px solid #303030;
-    border-radius: 10px;
-
-    outline: none;
-
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: clamp(18px, 1.5vw, 28px);
-
-    transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-/* Placeholder */
-
-#movie_input::placeholder {
-    color: #555;
-}
-
-
-/* Input focus */
-
-#movie_input:focus {
-    background-color: #202020;
-
-    border-color: #555;
-
-    box-shadow:
-        0 0 0 2px #111,
-        0 0 0 3px #444;
-}
-
-
-/* ================================= */
-/*          UPLOAD BUTTON             */
-/* ================================= */
-
-#upload_btn {
-    height: clamp(50px, 6vh, 75px);
-
-    padding: 0 clamp(25px, 2.5vw, 45px);
-
-    background-color: #242424;
-
-    color: #dcdcdc;
-
-    border: 1px solid #3a3a3a;
-    border-radius: 10px;
-
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: clamp(18px, 1.5vw, 28px);
-    font-weight: 500;
-
-    cursor: pointer;
-
-    transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-#upload_btn:hover {
-    background-color: #303030;
-
-    border-color: #555;
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 5px 20px rgba(0, 0, 0, 0.4);
-}
-
-
-#upload_btn:focus {
-    outline: none;
-
-    background-color: #303030;
-
-    border-color: #777;
-
-    box-shadow:
-        0 0 0 2px #111,
-        0 0 0 4px #555;
-
-    transform: scale(1.05);
-}
-
-
-#upload_btn:active {
-    transform: scale(0.98);
-}
-
-
-/* ================================= */
-/*         CURRENT MOVIE              */
-/* ================================= */
-
-#current_movie {
     flex: 1;
 
     min-width: 0;
 
-    height: clamp(50px, 6vh, 75px);
+    height: clamp(50px, 6vh, 70px);
+
+    padding: 0 20px;
+
+    background-color: #1a1a1a;
+
+    color: #dddddd;
+
+    border: 1px solid #353535;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size:
+        clamp(18px, 1.4vw, 25px);
+}
+
+
+#movie_input::placeholder {
+
+    color: #666666;
+}
+
+
+#movie_input:focus {
+
+    border-color: #666666;
+
+    background-color: #202020;
+}
+
+
+/* ========================================= */
+/*                UPLOAD BUTTON              */
+/* ========================================= */
+
+#upload_btn {
+
+    height: clamp(50px, 6vh, 70px);
+
+    padding:
+        0 clamp(25px, 2.5vw, 40px);
+
+    background-color: #242424;
+
+    color: #dddddd;
+
+    border: 1px solid #3a3a3a;
+
+    border-radius: 10px;
+
+    font-size:
+        clamp(18px, 1.4vw, 25px);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+#upload_btn:hover {
+
+    background-color: #303030;
+
+    transform: translateY(-2px);
+}
+
+
+/* ========================================= */
+/*             CURRENT MOVIE                */
+/* ========================================= */
+
+.current-section {
+
+    width: 100%;
 
     display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+#current_movie {
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: clamp(50px, 6vh, 70px);
+
+    display: flex;
+
     align-items: center;
 
     margin: 0;
 
     padding: 0 20px;
 
-    background-color: #121212;
+    background-color: #151515;
 
-    color: #888;
+    color: #888888;
 
-    border: 1px solid #252525;
+    border: 1px solid #292929;
+
     border-radius: 10px;
 
-    font-size: clamp(16px, 1.3vw, 24px);
+    font-size:
+        clamp(16px, 1.3vw, 23px);
 
     white-space: nowrap;
 
@@ -547,82 +509,146 @@ body {
 }
 
 
-/* ================================= */
-/*            OPEN BUTTON             */
-/* ================================= */
+/* ========================================= */
+/*                 OPEN BUTTON               */
+/* ========================================= */
 
 #open_btn {
-    height: clamp(50px, 6vh, 75px);
 
-    padding: 0 clamp(30px, 3vw, 50px);
+    height: clamp(50px, 6vh, 70px);
 
-    background-color: #202020;
+    padding:
+        0 clamp(25px, 2.5vw, 40px);
 
-    color: #e6e6e6;
+    background-color: #242424;
+
+    color: #dddddd;
 
     border: 1px solid #3a3a3a;
+
     border-radius: 10px;
 
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: clamp(18px, 1.5vw, 28px);
-    font-weight: 500;
+    font-size:
+        clamp(18px, 1.4vw, 25px);
 
     cursor: pointer;
 
     transition:
         background-color 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        transform 0.2s ease;
 }
 
 
 #open_btn:hover {
-    background-color: #303030;
 
-    border-color: #555;
+    background-color: #303030;
 
     transform: translateY(-2px);
-
-    box-shadow:
-        0 5px 20px rgba(0, 0, 0, 0.4);
 }
 
 
-#open_btn:focus {
-    outline: none;
+/* ========================================= */
+/*              REFRESH BUTTON               */
+/* ========================================= */
 
-    background-color: #303030;
+#refresh_btn {
 
-    border-color: #777;
+    width: clamp(50px, 6vh, 70px);
 
-    box-shadow:
-        0 0 0 2px #111,
-        0 0 0 4px #555;
+    height: clamp(50px, 6vh, 70px);
 
-    transform: scale(1.05);
+    flex-shrink: 0;
+
+    background-color: #1c1c1c;
+
+    color: #aaaaaa;
+
+    border: 1px solid #353535;
+
+    border-radius: 10px;
+
+    font-size:
+        clamp(24px, 2vw, 32px);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 
-#open_btn:active {
-    transform: scale(0.98);
+#refresh_btn:hover {
+
+    background-color: #292929;
+
+    color: #dddddd;
+
+    transform: rotate(90deg);
 }
 
 
-/* ================================= */
-/*        DISABLED OPEN BUTTON        */
-/* ================================= */
+/* ========================================= */
+/*              DISABLED BUTTON              */
+/* ========================================= */
 
 #open_btn:disabled {
-    color: #444;
 
     background-color: #161616;
 
-    border-color: #222;
+    color: #444444;
+
+    border-color: #222222;
 
     cursor: not-allowed;
 
     transform: none;
+}
 
-    box-shadow: none;
+
+/* ========================================= */
+/*              SMALL SCREENS                */
+/* ========================================= */
+
+@media (max-width: 700px) {
+
+    .container {
+
+        width: 94vw;
+
+        gap: 25px;
+    }
+
+
+    .upload-section {
+
+        flex-direction: column;
+    }
+
+
+    .current-section {
+
+        flex-wrap: wrap;
+    }
+
+
+    #current_movie {
+
+        width: 100%;
+
+        flex-basis: 100%;
+    }
+
+
+    #open_btn {
+
+        flex: 1;
+    }
+
+
+    #refresh_btn {
+
+        flex: 0 0 60px;
+    }
 }

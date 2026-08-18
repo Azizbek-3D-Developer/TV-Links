@@ -1,0 +1,359 @@
+/* ========================================= */
+/*                 MOBILE                    */
+/* ========================================= */
+
+
+/* ========================================= */
+/*                  BODY                     */
+/* ========================================= */
+
+body {
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    align-items: flex-start;
+}
+
+
+/* ========================================= */
+/*               MAIN CONTAINER              */
+/* ========================================= */
+
+.container {
+
+    width: 92vw;
+
+    min-height: 100vh;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    padding:
+        25px
+        0;
+}
+
+
+/* ========================================= */
+/*              LINK CONVEYOR                */
+/* ========================================= */
+
+.buttons-wrapper {
+
+    width: 100%;
+
+    padding: 10px 0;
+
+    border-radius: 10px;
+}
+
+
+.buttons {
+
+    gap: 10px;
+
+    padding-left: 12px;
+
+    animation:
+        conveyor 32s linear infinite;
+}
+
+
+/* ========================================= */
+/*              SERVICE BUTTONS              */
+/* ========================================= */
+
+.site-button {
+
+    width: 145px;
+
+    height: 55px;
+
+    gap: 8px;
+
+    border-radius: 9px;
+
+    font-size: 16px;
+}
+
+
+.site-image {
+
+    width: 25px;
+    height: 25px;
+}
+
+
+/* ========================================= */
+/*                 STREAMER                  */
+/* ========================================= */
+
+.streamer {
+
+    width: 100%;
+
+    padding: 18px;
+
+    gap: 15px;
+
+    border-radius: 10px;
+}
+
+
+/* ========================================= */
+/*             STREAMER TITLE                */
+/* ========================================= */
+
+.streamer-title {
+
+    font-size: 20px;
+
+    text-align: center;
+}
+
+
+/* ========================================= */
+/*           STREAMER CONTROLS               */
+/* ========================================= */
+
+.streamer-controls {
+
+    display: grid;
+
+    grid-template-columns:
+        auto
+        1fr
+        1fr;
+
+    gap: 8px;
+
+    width: 100%;
+}
+
+
+/* ========================================= */
+/*                 IP PREFIX                 */
+/* ========================================= */
+
+.ip-prefix {
+
+    display: flex;
+
+    align-items: center;
+
+    font-size: 15px;
+
+    white-space: nowrap;
+}
+
+
+/* ========================================= */
+/*                 IP INPUTS                 */
+/* ========================================= */
+
+.input_btns {
+
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 8px;
+
+    border-radius: 8px;
+
+    font-size: 17px;
+}
+
+
+/* ========================================= */
+/*             CONNECT BUTTON                */
+/* ========================================= */
+
+#stream_btn {
+
+    grid-column:
+        1 / -1;
+
+    width: 100%;
+
+    height: 48px;
+
+    border-radius: 8px;
+
+    font-size: 17px;
+}
+
+
+/* ========================================= */
+/*              MOVIE SHARING                */
+/* ========================================= */
+
+.movie-sharing {
+
+    width: 100%;
+
+    padding: 18px;
+
+    gap: 12px;
+
+    border-radius: 10px;
+}
+
+
+/* ========================================= */
+/*              UPLOAD SECTION               */
+/* ========================================= */
+
+.upload-section {
+
+    flex-direction: column;
+
+    width: 100%;
+
+    gap: 10px;
+}
+
+
+/* ========================================= */
+/*              MOVIE INPUT                 */
+/* ========================================= */
+
+#movie_input {
+
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 15px;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+}
+
+
+/* ========================================= */
+/*              UPLOAD BUTTON                */
+/* ========================================= */
+
+#upload_btn {
+
+    width: 100%;
+
+    height: 50px;
+
+    border-radius: 8px;
+
+    font-size: 17px;
+}
+
+
+/* ========================================= */
+/*             CURRENT SECTION               */
+/* ========================================= */
+
+.current-section {
+
+    display: grid;
+
+    grid-template-columns: 1fr auto;
+
+    gap: 10px;
+
+    width: 100%;
+}
+
+
+/* ========================================= */
+/*             CURRENT MOVIE                 */
+/* ========================================= */
+
+#current_movie {
+
+    grid-column:
+        1 / -1;
+
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 15px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+}
+
+
+/* ========================================= */
+/*               OPEN BUTTON                 */
+/* ========================================= */
+
+#open_btn {
+
+    width: 100%;
+
+    height: 50px;
+
+    border-radius: 8px;
+
+    font-size: 17px;
+}
+
+
+/* ========================================= */
+/*              REFRESH BUTTON               */
+/* ========================================= */
+
+#refresh_btn {
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 8px;
+
+    font-size: 24px;
+}
+
+
+/* ========================================= */
+/*          TOUCH INTERACTION                */
+/* ========================================= */
+
+.site-button,
+button {
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+    touch-action: manipulation;
+}
+
+
+/* ========================================= */
+/*        DISABLE HOVER EFFECTS              */
+/* ========================================= */
+
+@media (hover: none) {
+
+    .site-button:hover {
+
+        transform: none;
+
+        background-color: #202020;
+
+        border-color: #353535;
+    }
+
+
+    #upload_btn:hover,
+    #open_btn:hover,
+    #refresh_btn:hover,
+    #stream_btn:hover {
+
+        transform: none;
+    }
+}
